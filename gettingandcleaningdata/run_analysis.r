@@ -31,5 +31,5 @@ allData = cbind(X,subject,yTransformed$V2)
 names(allData) = featureNames
 
 #write the output
-write.csv(allData, file = "tidy_data.csv")
+write.table(allData, file = "tidy_data.txt")
 

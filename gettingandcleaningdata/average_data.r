@@ -16,6 +16,6 @@ averageByLabel = dcast(filteredMelt, label ~ variable,mean)
 averageByLabelAndSubject  = dcast(filteredMelt, subject+label ~ variable,mean)
 
 #write the output
-write.csv(averageBySubject, file = "averageBySubject.csv")
-write.csv(averageByLabel, file = "averageByLabel.csv")
-write.csv(averageByLabelAndSubject, file = "averageByLabelAndSubject.csv")
+write.table(averageBySubject, file = "averageBySubject.txt")
+write.table(averageByLabel, file = "averageByLabel.txt")
+write.table(averageByLabelAndSubject, file = "averageByLabelAndSubject.txt")
