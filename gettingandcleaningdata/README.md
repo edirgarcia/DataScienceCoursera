@@ -2,9 +2,24 @@ Coursera Data Science - Getting and Cleaning Data project
 ===================
 
 The run_analysis.R script will transform the data from a raw data set to a tidy more manageable and descriptive tidy data schema.
-The average_data.R script will get the average of each one of the following variables:
-"tBodyAcc.mean.X","tBodyAcc.mean.Y","tBodyAcc.mean.Z","tBodyAcc.std.X","tBodyAcc.std.Y","tBodyAcc.std.Z" which are the Body Aceleration
- Mean and Body Aceleration Standard Deviation, for each one of the axis, X,Y,Z. and willl average them. It will output projections for all the labels
- ,for all the subjects, and for all the combinations of subject-label a total of 35 due to missing readings.
+
+The run analysis script will load:
+
+activityLabels
+features 
+xTrain
+yTrain
+subjectTrain
+xTest 
+yTest 
+subjectTest 
+
+
+then it will remove the parentheses dashes, and commas to use the features as names for the tidy set
+then it will row bind the test set and train set files, next it will merge the activity label names and the actual label column.
+finally it will column bind the labels and all of the data, and it will set the processed feature names and name the tidy data set.
+Then it will write the output file in .txt format.
+
+
  
  
