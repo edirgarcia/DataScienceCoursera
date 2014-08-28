@@ -1,0 +1,98 @@
+
+##Peer Assesment 2##
+
+##The Natural events that cause the most harm in Health and Economy.##
+
+###Synopsis###
+Natural dissasters are really costly in money, injuries and human lifes. We want to analyze which of these are the ones that cause the worst impact.
+
+###Data Processing###
+Explanation of how the data was processed for this study.
+
+Loading the data.
+
+```{r}
+StormData = read.csv("repdata-data-StormData.csv")
+```
+
+Across the United States, which types of events are most harmful with respect to population health?
+
+I'll measure the population health in terms of the injuries and fatalities.I will asume that the larger these averages per event The most harmful.
+To try to solve the previous question I'll calculate the average number of injuries and fatalities per event.
+
+```{r}
+fatalities_events = aggregate(FATALITIES~EVTYPE,data=StormData,mean)
+
+injuries_events = aggregate(INJURIES~EVTYPE,data=StormData,mean)
+```
+
+After merging these sets I will assume an injury and a fatality are equaly bad, hence I'm ordering and displaying the top 10 events that cause the most of both.
+These are the top 10 sources of Fatalities and Injuries:
+
+```{r}
+all_health = merge(fatalities_events,injuries_events)
+
+all_health_order = all_health[with(all_health, order(-(FATALITIES+INJURIES))),]
+
+injuries_order = all_health[with(all_health, order(-INJURIES)),]
+
+fatalities_order = all_health[with(all_health, order(-FATALITIES)),]
+
+top_health = head(all_health_order,10)
+top_health
+```
+
+So assuming that both injuries and fatalities generate the same amount of 'harm' we can observe from this graph that the 5 tallest points are:
+```{r, echo=FALSE}
+head(top_health)
+````
+```{r}
+library(ggplot2)
+ggplot(data=top_health, aes(x=EVTYPE, y=(FATALITIES+INJURIES))) + geom_bar(stat="identity")
+```
+
+Across the United States, which types of events have the greatest economic consequences?
+
+I'll measure the economic consequences in terms of the damage caused to  crops and properties.
+I will asume that the larger these averages per event The most economical consequences they had
+.
+To try to solve the previous question I'll calculate the average number of damages per event.
+
+```{r}
+cropdmg_events = aggregate(CROPDMG~EVTYPE,data=StormData,mean)
+
+propdmg_events = aggregate(PROPDMG~EVTYPE,data=StormData,mean)
+```
+
+Both of these sets are in the same unit (USD) because of this they can be compared equally.
+I'm ordering and displaying the top 10 events that cause economical impact.
+These are the top 10 sources of Economical Impact:
+
+```{r}
+all_economical = merge(cropdmg_events,propdmg_events)
+
+all_economical_order = all_economical[with(all_economical, order(-(CROPDMG+PROPDMG))),]
+
+top_economical = head(all_economical_order,10)
+top_economical
+```
+
+So assuming that both injuries and fatalities generate the same amount of 'harm' we can observe from this graph that the 5 tallest points are:
+```{r, echo=FALSE}
+head(top_economical)
+````
+```{r}
+library(ggplot2)
+ggplot(data=top_economical, aes(x=EVTYPE, y=(CROPDMG+PROPDMG))) + geom_bar(stat="identity")
+```
+
+###Results###
+
+The Most harmful events to Health are Heat Waves, Tropical Storm Gordon, Wildfires, Thunderstorms, Tornadoes and High Wind and Seas.
+The most deadly being Tornadoes, and the most Injures with Heat Waves.
+
+The most harmful events in the economical sense are Tropical Storm Gordon,Coastal Erosion, Heavy Rain and Flood,  River Floods, and Dust Storms.
+With theTropical Storm Gordon being undoubtedly the worst.
+
+If We had to pick a single worst event with economicals and health implications it'd be Tropical Storm Gordon.
+
