@@ -1,5 +1,4 @@
 #this script requires the execution of run_analysis.R previously to have the required objects added to the workspace.
-
 #using reshape2
 library(reshape2)
 

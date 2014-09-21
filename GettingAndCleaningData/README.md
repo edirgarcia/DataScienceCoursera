@@ -14,7 +14,6 @@ xTest
 yTest 
 subjectTest 
 
-
 Then it will remove the parentheses dashes, and commas to use the features as names for the tidy set
 then it will row bind the test set and train set files, next it will merge the activity label names and the actual label column.
 finally it will column bind the labels and all of the data, and it will set the processed feature names and name the tidy data set.

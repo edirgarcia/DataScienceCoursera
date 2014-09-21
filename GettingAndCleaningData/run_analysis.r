@@ -1,3 +1,4 @@
+
 # load the data
 activityLabels = read.table("UCI HAR Dataset/activity_labels.txt")
 features = read.table("UCI HAR Dataset/features.txt")

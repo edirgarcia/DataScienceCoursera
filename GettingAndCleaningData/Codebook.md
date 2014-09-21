@@ -1,6 +1,7 @@
 Coursera Data Science - Codebook
 ===================
 
+
 The average_data.R script will get the average of each one of the following variables:
 
 "tBodyAcc.mean.X","tBodyAcc.mean.Y","tBodyAcc.mean.Z","tBodyAcc.std.X","tBodyAcc.std.Y","tBodyAcc.std.Z" which are the Body Aceleration
